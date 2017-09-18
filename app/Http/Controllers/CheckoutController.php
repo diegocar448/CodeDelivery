@@ -10,8 +10,6 @@ use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-
 class CheckoutController extends Controller
 {
     private $repository;

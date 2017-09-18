@@ -14,7 +14,7 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role) //aqui adicionamos um parametro para o middleware
     {
         //Se não tiver autenticado volta para a pagina login
         if (!Auth::check()) 
@@ -23,7 +23,14 @@ class CheckRole
         }
 
         //somente o admin terá acesso ao painel administrativo
-        if (Auth::user()->role <> "admin") 
+        /*if (Auth::user()->role <> "admin") 
+        {
+            return redirect('auth/login');
+        }*/
+
+        
+        //se a role do usuário autenticado bate com a $role que passamos
+        if (Auth::user()->role <> $role) 
         {
             return redirect('auth/login');
         }        
