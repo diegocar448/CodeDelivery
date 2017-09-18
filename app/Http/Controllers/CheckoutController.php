@@ -3,12 +3,13 @@
 namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests;
-//use CodeDelivery\Http\Requests\AdminCategoryRequest;
 use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Repositories\ProductRepository;
+use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class CheckoutController extends Controller
@@ -36,7 +37,7 @@ class CheckoutController extends Controller
     {
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
         //pegar as orders desse cliente especifico
-        $orders = $this->repository->scopeQuery(function($query) use($clientId) {
+        $orders = $this->repository->scopeQuery(function($query) use ($clientId) {
             return $query->where('client_id', '=', $clientId);
         })->paginate();
 
@@ -59,7 +60,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $clientId = $this->userRepository->find(Auth::user()->id)->client-id //para identificar de quem e essa order
+        $clientId = $this->userRepository->find(Auth::user()->id)->client->id; //para identificar de quem e essa order
         $data['client_id'] = $clientId;
         $this->service->create($data);
 

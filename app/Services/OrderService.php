@@ -1,12 +1,18 @@
 <?php 
-namespace CodeDelivery\Service;
+namespace CodeDelivery\Services;
 
+
+use CodeDelivery\Models\Order;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\ProductRepository;
 
 class OrderService
 {
+	private $orderRepository;
+	private $cupomRepository;
+	private $productRepository;
+
 	public function __construct(
 			OrderRepository $orderRepository, 
 			CupomRepository $cupomRepository, 
@@ -22,14 +28,14 @@ class OrderService
 	{
 
 		//trabalhando com transação iniciando ela
-		DB::beginTransaction();
+		\DB::beginTransaction();
 		try{
 			$data['status'] = 0; //para garantir que o pedido sempre sera pendente
 			//verificar se vai passar algum cupom de desconto
 			if(isset($data['cupom_code']))
 			{
 				$cupom = $this->cupomRepository->findByField('code', $data['cupom_code'])->first(); //pegar o primeiro registro
-				$data['cupom'] = $cupom->id;  // vai determinar que o codigo do nosso cupom sera o id
+				$data['cupom_id'] = $cupom->id;  // vai determinar que o codigo do nosso cupom sera o id
 				$cupom->used = 1;
 				$cupom->save(); //salva o cupom
 				unset($data['cupom_code']); //para ele não tentar persistir esses dados qdo a gente colocar o data no array
@@ -43,7 +49,7 @@ class OrderService
 
 			foreach($items as $item)
 			{
-				$item['price'] = $this->productRepository->find['product_id'])->price; //pega o preço individual
+				$item['price'] = $this->productRepository->find($item['product_id'])->price; //pega o preço individual
 				$order->items()->create($item);  //vamos adicionar esse item a nossa ordem de serviço   
 				$total += $item['price'] * $item['qtd'];
 			}
@@ -61,7 +67,7 @@ class OrderService
 		}
 		catch(\Exception $e)
 		{
-			\DB::rollback();  //rollback volta tudo caso não tenha feito todo o processo
+			\DB::rollBack();  //rollback volta tudo caso não tenha feito todo o processo
 			throw $e;
 		}
 	}
