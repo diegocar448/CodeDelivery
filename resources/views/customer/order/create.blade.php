@@ -40,6 +40,11 @@
 				</table>
 			</div>
 
+			<div class="form-group">
+				{!! Form::submit('Criar pedido', ['class' => 'btn btn-primary']) !!}
+			</div>
+
+
 			{!! Form::close() !!}
 		</div>
 @endsection
@@ -99,8 +104,6 @@
 		$('#total').html(total); //vamos atualizar
 
 	}
-
-
 		
 	</script>
 @endsection
