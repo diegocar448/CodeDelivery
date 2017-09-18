@@ -67,7 +67,39 @@
 
 		newRow.find('input').val(1);
 		newRow.insertAfter(row);
+
+		calculateTotal();
 	});
+
+
+	//como os valores trabalham dinamicamente teremos que usar o ON do jQuery
+	$(document.body).on('click','select', function() {
+		calculateTotal();
+	});
+
+	//toda vez que sair do campo fara o calculo novamente
+	//usar blur quando o campo for um input
+	$(document.body).blur('blur','input', function() {
+		calculateTotal();
+	});
+
+	function calculateTotal(){
+		var total = 0, //pegar o total
+			trLen =  $('table tbody tr').length, //pegar quantas linha tiver
+			tr = null,price, qtd;  //acabamos de setar o valor da nossa tr
+
+		for(var i=0; i < trLen; i++) //agora faremos loop
+		{
+			tr = $('table tbody tr').eq(i); //focando no nosso indice do i
+			price = tr.find(':selected').data('price'); //o valor que esta selecionado (o atributo data-price do <option>)
+			qtd = tr.find('input').val();   // vamos pegar as quantidades
+			total += price*qtd
+		}
+
+		$('#total').html(total); //vamos atualizar
+
+	}
+
 
 		
 	</script>
