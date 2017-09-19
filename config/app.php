@@ -150,6 +150,10 @@ return [
         CodeDelivery\Providers\RouteServiceProvider::class,
         CodeDelivery\Providers\RepositoryServiceProvider::class,
         Bestmomo\Scafold\ScafoldServiceProvider::class,
+
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+
     ],
 
     /*
@@ -199,7 +203,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
     ],
 

@@ -69,7 +69,10 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         ),
         'L' => 
         array (
+            'LucaDegasperi\\OAuth2Server\\' => 27,
+            'League\\OAuth2\\Server\\' => 21,
             'League\\Flysystem\\' => 17,
+            'League\\Event\\' => 13,
         ),
         'I' => 
         array (
@@ -209,9 +212,21 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'LucaDegasperi\\OAuth2Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lucadegasperi/oauth2-server-laravel/src',
+        ),
+        'League\\OAuth2\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-server/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
+        'League\\Event\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/event/src',
         ),
         'Illuminate\\Html\\' => 
         array (
