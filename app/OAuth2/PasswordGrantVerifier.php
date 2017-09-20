@@ -2,6 +2,8 @@
 
 namespace CodeDelivery\OAuth2;
 
+use Illuminate\Support\Facades\Auth;
+
 class PasswordGrantVerifier
 {
 	public function verify($username, $password)
