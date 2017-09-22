@@ -56,16 +56,9 @@ Route::group(['prefix'=>'api', 'middleware'=>'oauth', 'as'=>'api.'], function() 
 	});
 
 
-
-	/*Route::group(['prefix'=>'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as'=>'deliveryman.'] , function() {
-		Route::get('pedidos', function() {
-			return [
-				'id' => '1',
-				'client'=> 'Diego - Entregador',
-				'total' => 10
-
-			];
-		});
-	});*/
-	
+	Route::group(['prefix'=>'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as'=>'deliveryman.'], function() {
+		Route::resource('order', 
+			'Api\Deliveryman\DeliverymanCheckoutController', ['except' => ['create', 'edit', 'destroy', 'store']]);
+			 //except metodos que não quero q seja criados		
+	});		
 });

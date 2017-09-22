@@ -1,17 +1,16 @@
 <?php
 
-namespace CodeDelivery\Http\Controllers\Api\Client;
+namespace CodeDelivery\Http\Controllers\Api\Deliveryman;
 
 use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
-class ClientCheckoutController extends Controller
+class DeliverymanCheckoutController extends Controller
 {
     private $repository;
     private $userRepository;    
@@ -25,34 +24,21 @@ class ClientCheckoutController extends Controller
 	
     {
         $this->repository = $repository;
-        $this->userRepository = $userRepository;        
+        $this->userRepository = $userRepository;       
 		$this->service = $service;
 	}
 
     public function index()
     {
-        $id = Authorizer::getResourceOwnerId(); //pegamos o id
-        $clientId = $this->userRepository->find($id)->client->id; //passamos o client e o id do client
+        $id = Authorizer::getResourceOwnerId(); //pegamos o id        
         //pegar as orders desse cliente especifico
-        $orders = $this->repository->with('items')->scopeQuery(function($query) use ($clientId) { //acresentar a relação items em nossa consulta
-            return $query->where('client_id', '=', $clientId);
+        $orders = $this->repository->with('items')->scopeQuery(function($query) use ($id) { 
+            return $query->where('user_deliveryman_id', '=', $id);
         })->paginate();
 
         return $orders; //retornar os proprios dados em JSON
     }    
-
-
-    public function store(Request $request)
-    {        
-        $data = $request->all();
-        $id = Authorizer::getResourceOwnerId(); //pegamos o id
-        $clientId = $this->userRepository->find($id)->client->id; 
-        $data['client_id'] = $clientId;
-        $o = $this->service->create($data);
-        $o = $this->repository->with(['items'])->find($o->id); //serializar os itens para a gente
-
-        return $o;
-    }
+    
 
     //para gente conseguir pegar um registro apenas
     public function show($id)
