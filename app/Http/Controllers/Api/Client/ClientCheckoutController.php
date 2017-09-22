@@ -10,6 +10,7 @@ use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class ClientCheckoutController extends Controller
 {
@@ -34,26 +35,30 @@ class ClientCheckoutController extends Controller
 
     public function index()
     {
-        $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
+        $id = Authorizer::getResourceOwnerId(); //pegamos o id
+        $clientId = $this->userRepository->find($id)->client->id; //passamos o client e o id do client
         //pegar as orders desse cliente especifico
-        $orders = $this->repository->scopeQuery(function($query) use ($clientId) {
+        $orders = $this->repository->with('items')->scopeQuery(function($query) use ($clientId) { //acresentar a relação items em nossa consulta
             return $query->where('client_id', '=', $clientId);
         })->paginate();
 
-        return view('customer.order.index', compact('orders'));
+        return $orders; //retornar os proprios dados em JSON
     }    
 
 
     public function store(Request $request)
-    {
+    {        
         $data = $request->all();
-        $clientId = $this->userRepository->find(Auth::user()->id)->client->id; //para identificar de quem e essa order
+        $id = Authorizer::getResourceOwnerId(); //pegamos o id
+        $clientId = $this->userRepository->find($id)->client->id; 
         $data['client_id'] = $clientId;
-        $this->service->create($data);
+        $o = $this->service->create($data);
+        $o = $this->repository->with(['items'])->find($o->id); //serializar os itens para a gente
 
-        return redirect()->route('customer.order.index');
+        return $o;
     }
 
+    //para gente conseguir pegar um registro apenas
     public function show($id)
     {
 

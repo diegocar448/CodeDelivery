@@ -64,6 +64,7 @@ class OrderService
 			$order->save();  //guardar o total da ordem no banco
 
 			\DB::commit(); //dar commit nos dados caso o o codigo tenha rodado com sucesso
+			return $order; //pegar a order
 		}
 		catch(\Exception $e)
 		{
