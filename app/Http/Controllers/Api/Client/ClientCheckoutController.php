@@ -61,6 +61,11 @@ class ClientCheckoutController extends Controller
     //para gente conseguir pegar um registro apenas
     public function show($id)
     {
+        $o = $this->repository->with(['client', 'items', 'cupom'])->find($id);
+        $o->items->each(function($item){
+            $items->product;
+        });
 
+        return $o;
     }
 }
