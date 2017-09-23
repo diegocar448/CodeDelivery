@@ -42,7 +42,7 @@ class ClientCheckoutController extends Controller
     }    
 
 
-    public function store(Requests\AdminClientRequest $request)
+    public function store(Requests\CheckoutRequest $request)
     {        
         $data = $request->all();
         $id = Authorizer::getResourceOwnerId(); //pegamos o id

@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Requests;
 
 use CodeDelivery\Http\Requests\Request;
 
-class AdminClientRequest extends Request
+class CheckoutRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class AdminClientRequest extends Request
     public function rules()
     {
         return [
-                        
+            'cupom_code' => 'exits:cupom,code,used,0' //verificamos se existe , o nome da tabela, e o nome do campo, e não permitir campo usado
         ];
     }
 }
