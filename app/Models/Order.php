@@ -18,6 +18,14 @@ class Order extends Model implements Transformable
 		   
 	];
 
+	public function transform()
+	{
+		return[
+			'order' => $this->id,
+			'order_items' => $this->items
+		];
+	}
+
 	public function cupom()
 	{
 		return $this->belongsTo(Cupom::class);
