@@ -25,9 +25,9 @@ class CheckoutRequest extends Request
     public function rules(HttpRequest $request)
     {
         $rules = [
-             'cupom_code' => 'exits:cupom,code,used,0' //verificamos se existe , o nome da tabela, e o nome do campo, e não permitir campo usado
+             'cupom_code' => 'exists:cupoms,code,used,0', //verificamos se existe , o nome da tabela, e o nome do campo, e não permitir campo usado
         ];
-        $this.buildRulesItems(0, $rules); // aqui ja passa um posição para obrigar o usuario a passar pelo menos 1 item
+        $this->buildRulesItems(0, $rules); // aqui ja passa um posição para obrigar o usuario a passar pelo menos 1 item
         $items = $request->get('items', []); //aqui teremos os nosso items
         $items = !is_array($items) ? [] : $items; //fazer verificação para garantir que o items será um array, operador ternario
 
@@ -40,8 +40,8 @@ class CheckoutRequest extends Request
 
     public function buildRulesItems($key, array &$rules) //qualquer coisa que acontecer dentro do metodo com parametro q tem o & não é alterado 
     {
-        $rules['items.$key.product_id'] = 'required';
-        $rules['items.$key.qtd'] = 'required';            
+        $rules["items.$key.product_id"] = 'required';
+        $rules["items.$key.qtd"] = 'required';            
     }
 }
 
