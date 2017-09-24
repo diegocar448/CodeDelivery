@@ -57,6 +57,8 @@ class ClientCheckoutController extends Controller
     //para gente conseguir pegar um registro apenas
     public function show($id)
     {
+        //skipPresenter deixa o presenter de lado e recebe os dados do Eloquent
+        //$o = $this->repository->skipPresenter()->with(['client', 'items', 'cupom'])->find($id);        
         $o = $this->repository->with(['client', 'items', 'cupom'])->find($id);        
 
         return $o;

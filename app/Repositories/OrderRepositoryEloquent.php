@@ -52,4 +52,9 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
         return Prettus\Repository\Presenter\ModelFractalPresenter::class;
     }
 
+    public function presenter()
+    {
+        return \CodeDelivery\Presenters\OrderPresenter::class;
+    }
+
 }
