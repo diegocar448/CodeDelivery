@@ -13,7 +13,8 @@ class OrderTransformer extends TransformerAbstract
 {
     //esse array ta informando os metodos q são padrões na hora de serializar esse Order $model ou seja qdo a gente chamar esse transform() ele ja vai serializar esse includeCupom() em seguida
     //ele compara ex: ['cupom'] com o nome do metodo includeCupom e serializa
-    protected $defaultIncludes = ['cupom'];
+    //ele compara ex: ['items'] com o nome do metodo includeItems e serializa
+    protected $availableIncludes = ['cupom', 'items'];
 
 
     /**
@@ -44,6 +45,13 @@ class OrderTransformer extends TransformerAbstract
         }
         //reponsavel por serializar apenas 1 objeto
         return $this->item($model->cupom, new CupomTransformer());
+    }
+
+
+    //serialização de uma coleção de dados
+    public function includeItems(Order $model)
+    {
+        return $this->collection($model->items, new OrderItemTransformer());
     }
 
 }
