@@ -14,7 +14,7 @@ class OrderTransformer extends TransformerAbstract
     //esse array ta informando os metodos q são padrões na hora de serializar esse Order $model ou seja qdo a gente chamar esse transform() ele ja vai serializar esse includeCupom() em seguida
     //ele compara ex: ['cupom'] com o nome do metodo includeCupom e serializa
     //ele compara ex: ['items'] com o nome do metodo includeItems e serializa
-    protected $availableIncludes = ['cupom', 'items'];
+    protected $availableIncludes = ['cupom', 'items', 'client'];
 
 
     /**
@@ -34,6 +34,11 @@ class OrderTransformer extends TransformerAbstract
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
+    }
+
+    public function includeClient(Order $model)
+    {
+        return $this->item($model->client,new ClientTransformer());
     }
 
     //sempre terá include antes do nome qdo fazer relacionamento

@@ -31,6 +31,14 @@ class OrderService
 		\DB::beginTransaction();
 		try{
 			$data['status'] = 0; //para garantir que o pedido sempre sera pendente
+			
+			//condição para não permitir usuario enviar cupom_id (logica para segurança do app)
+			if (isset($data['cupom_id'])) 
+			{
+				unset($data['cupom_id']);
+			}
+
+
 			//verificar se vai passar algum cupom de desconto
 			if(isset($data['cupom_code']))
 			{
