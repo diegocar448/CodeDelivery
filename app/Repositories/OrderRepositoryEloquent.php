@@ -24,14 +24,20 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
             'user_deliveryman_id' => $idDeliveryman
         ]);
 
-        
-        $result = $result->first(); //pegamos a primeira posição
-        if($result)
-        {
-            $result->items->each(function($item){ //para cada item a gente recupera o nosso produto
-                $items->product;
-            });
-        }        
+        //temos que fazer um first se o result for uma instancia do nosso collection
+        if ($result instanceof Collection) {
+            $result = $result->first();
+        //se não for uma instancia do objeto será uma array
+        }else{
+            if (isset($result['data']) && count($result['data']) == 1) {
+                $result = [
+                    'data' => $result['data'][0]
+                ];
+            }else{
+                throw new ModelNotFoundException("Order não existe");
+            }
+
+        }          
 
         return $result;
     }
