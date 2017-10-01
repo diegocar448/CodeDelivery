@@ -25,14 +25,33 @@ angular.module('starter', ['ionic'])
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
 .config(function($stateProvider){
-    $stateProvider.state('home', { //$stateProvider terá o estado de home
-        url: '/admin/home',
+    $stateProvider
+        .state('home', { //$stateProvider terá o estado de home
+        url: '/home',
         templateUrl: 'templates/home.html'
-    })
-    .state('main', { //$stateProvider terá o estado de main
-        url: '/admin',
-        templateUrl: 'templates/main.html'
-    })
+        })    
+            .state('home.a', { //$stateProvider terá o estado de home
+            url: '/a',
+            templateUrl: 'templates/home-a.html'
+            })   
+            .state('home.b', { //$stateProvider terá o estado de home
+            url: '/b',
+            templateUrl: 'templates/home-b.html'
+            }) 
+
+
+        .state('main', { //$stateProvider terá o estado de main
+          url: '/main',
+          templateUrl: 'templates/main.html'
+        })
+            .state('main.a', { //$stateProvider terá o estado de main
+              url: '/a',
+              templateUrl: 'templates/main-a.html'
+            })
+            .state('main.b', { //$stateProvider terá o estado de main
+              url: '/b',
+              templateUrl: 'templates/main-b.html'
+            })
 });
 
 
