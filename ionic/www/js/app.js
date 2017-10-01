@@ -24,7 +24,7 @@ angular.module('starter', ['ionic'])
 })
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
-.config(function($stateProvider){
+.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('home', { //$stateProvider terá o estado de home
         url: '/home',
@@ -51,7 +51,10 @@ angular.module('starter', ['ionic'])
             .state('main.b', { //$stateProvider terá o estado de main
               url: '/b',
               templateUrl: 'templates/main-b.html'
-            })
+            });
+
+
+    $urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente
 });
 
 
