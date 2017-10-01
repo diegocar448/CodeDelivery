@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,30 +27,31 @@ angular.module('starter', ['ionic'])
 .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('home', { //$stateProvider terá o estado de home
-        url: '/home',
-        templateUrl: 'templates/home.html'
+            url: '/home/:nome',
+            templateUrl: 'templates/home.html',
+            controller: 'HomeCtrl'
         })    
             .state('home.a', { //$stateProvider terá o estado de home
-            url: '/a',
-            templateUrl: 'templates/home-a.html'
-            })   
+                url: '/a',
+                templateUrl: 'templates/home-a.html'
+                })   
             .state('home.b', { //$stateProvider terá o estado de home
-            url: '/b',
-            templateUrl: 'templates/home-b.html'
+                url: '/b',
+                templateUrl: 'templates/home-b.html'
             }) 
 
 
         .state('main', { //$stateProvider terá o estado de main
-          url: '/main',
-          templateUrl: 'templates/main.html'
+              url: '/main',
+              templateUrl: 'templates/main.html'
         })
             .state('main.a', { //$stateProvider terá o estado de main
-              url: '/a',
-              templateUrl: 'templates/main-a.html'
+                  url: '/a',
+                  templateUrl: 'templates/main-a.html'
             })
             .state('main.b', { //$stateProvider terá o estado de main
-              url: '/b',
-              templateUrl: 'templates/main-b.html'
+                  url: '/b',
+                  templateUrl: 'templates/main-b.html'
             });
 
 
