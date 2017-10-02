@@ -24,7 +24,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 })
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider){
+
+    OAuthProvider.configure({
+      baseUrl: 'https://localhost:8000',
+      clientId: 'appid01',
+      clientSecret: 'secret' // optional
+    });
+
+    OAuthTokenProvider.configure({
+        name: 'token',
+        options: {
+            secure: false //ele vai usar encriptração como o https se for True
+        }
+    });
+
+
     $stateProvider
         .state('home', { //$stateProvider terá o estado de home
             url: '/home/:nome',
