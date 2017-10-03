@@ -41,36 +41,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
 
     $stateProvider
-        .state('home', { //$stateProvider terá o estado de home
-            url: '/home/:nome',
-            templateUrl: 'templates/home.html',
-            controller: 'HomeCtrl'
-        })    
-            .state('home.a', { //$stateProvider terá o estado de home
-                url: '/a',
-                templateUrl: 'templates/home-a.html'
-                })   
-            .state('home.b', { //$stateProvider terá o estado de home
-                url: '/b',
-                templateUrl: 'templates/home-b.html'
-            }) 
+        .state('login', { 
+            url: '/login',
+            templateUrl: 'templates/login.html',
+            controller: 'LoginCtrl'
+    });
 
 
-        .state('main', { //$stateProvider terá o estado de main
-              url: '/main',
-              templateUrl: 'templates/main.html'
-        })
-            .state('main.a', { //$stateProvider terá o estado de main
-                  url: '/a',
-                  templateUrl: 'templates/main-a.html'
-            })
-            .state('main.b', { //$stateProvider terá o estado de main
-                  url: '/b',
-                  templateUrl: 'templates/main-b.html'
-            });
-
-
-    $urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente
+    //$urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente
 });
 
 
