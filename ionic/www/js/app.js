@@ -29,7 +29,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
     OAuthProvider.configure({
       baseUrl: 'https://localhost:8000',
       clientId: 'appid01',
-      clientSecret: 'secret' // optional
+      clientSecret: 'secret', // optional
+      grantPath: '/oauth/acess_token' //essa e o caminho para pegarmos o nosso token
     });
 
     OAuthTokenProvider.configure({
