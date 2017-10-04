@@ -6,6 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
+    'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
+    'Barryvdh\\Cors\\HandleCors' => $vendorDir . '/barryvdh/laravel-cors/src/HandleCors.php',
+    'Barryvdh\\Cors\\HandlePreflight' => $vendorDir . '/barryvdh/laravel-cors/src/HandlePreflight.php',
+    'Barryvdh\\Cors\\LumenServiceProvider' => $vendorDir . '/barryvdh/laravel-cors/src/LumenServiceProvider.php',
+    'Barryvdh\\Cors\\ServiceProvider' => $vendorDir . '/barryvdh/laravel-cors/src/ServiceProvider.php',
     'Bestmomo\\Scafold\\Http\\Controllers\\HomeController' => $vendorDir . '/bestmomo/scafold/src/Http/Controllers/HomeController.php',
     'Bestmomo\\Scafold\\ScafoldServiceProvider' => $vendorDir . '/bestmomo/scafold/src/ScafoldServiceProvider.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
@@ -64,6 +70,7 @@ return array(
     'CodeDelivery\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'CodeDelivery\\Models\\User' => $baseDir . '/app/Models/User.php',
     'CodeDelivery\\OAuth2\\PasswordGrantVerifier' => $baseDir . '/app/OAuth2/PasswordGrantVerifier.php',
+    'CodeDelivery\\Presenters\\OrderPresenter' => $baseDir . '/app/Presenters/OrderPresenter.php',
     'CodeDelivery\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'CodeDelivery\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'CodeDelivery\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
@@ -85,6 +92,10 @@ return array(
     'CodeDelivery\\Repositories\\UserRepositoryEloquent' => $baseDir . '/app/Repositories/UserRepositoryEloquent.php',
     'CodeDelivery\\Services\\ClientService' => $baseDir . '/app/Services/ClientService.php',
     'CodeDelivery\\Services\\OrderService' => $baseDir . '/app/Services/OrderService.php',
+    'CodeDelivery\\Transformers\\ClientTransformer' => $baseDir . '/app/Transformers/ClientTransformer.php',
+    'CodeDelivery\\Transformers\\CupomTransformer' => $baseDir . '/app/Transformers/CupomTransformer.php',
+    'CodeDelivery\\Transformers\\OrderItemTransformer' => $baseDir . '/app/Transformers/OrderItemTransformer.php',
+    'CodeDelivery\\Transformers\\OrderTransformer' => $baseDir . '/app/Transformers/OrderTransformer.php',
     'Collective\\Html\\FormBuilder' => $vendorDir . '/laravelcollective/html/src/FormBuilder.php',
     'Collective\\Html\\FormFacade' => $vendorDir . '/laravelcollective/html/src/FormFacade.php',
     'Collective\\Html\\HtmlBuilder' => $vendorDir . '/laravelcollective/html/src/HtmlBuilder.php',

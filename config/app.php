@@ -141,6 +141,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        Barryvdh\Cors\ServiceProvider::class,
+
+
         /*
          * Application Service Providers...
          */

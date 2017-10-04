@@ -99,6 +99,7 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         'B' => 
         array (
             'Bestmomo\\Scafold\\' => 17,
+            'Barryvdh\\Cors\\' => 14,
         ),
     );
 
@@ -273,6 +274,10 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         array (
             0 => __DIR__ . '/..' . '/bestmomo/scafold/src',
         ),
+        'Barryvdh\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/barryvdh/laravel-cors/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -320,9 +325,22 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
                 0 => __DIR__ . '/..' . '/phpspec/php-diff/lib',
             ),
         ),
+        'A' => 
+        array (
+            'Asm89\\Stack' => 
+            array (
+                0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
+        'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
+        'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
+        'Barryvdh\\Cors\\HandleCors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandleCors.php',
+        'Barryvdh\\Cors\\HandlePreflight' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandlePreflight.php',
+        'Barryvdh\\Cors\\LumenServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/LumenServiceProvider.php',
+        'Barryvdh\\Cors\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/ServiceProvider.php',
         'Bestmomo\\Scafold\\Http\\Controllers\\HomeController' => __DIR__ . '/..' . '/bestmomo/scafold/src/Http/Controllers/HomeController.php',
         'Bestmomo\\Scafold\\ScafoldServiceProvider' => __DIR__ . '/..' . '/bestmomo/scafold/src/ScafoldServiceProvider.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
@@ -381,6 +399,7 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         'CodeDelivery\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'CodeDelivery\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'CodeDelivery\\OAuth2\\PasswordGrantVerifier' => __DIR__ . '/../..' . '/app/OAuth2/PasswordGrantVerifier.php',
+        'CodeDelivery\\Presenters\\OrderPresenter' => __DIR__ . '/../..' . '/app/Presenters/OrderPresenter.php',
         'CodeDelivery\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'CodeDelivery\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'CodeDelivery\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
@@ -402,6 +421,10 @@ class ComposerStaticInit88d18ee00ce23a36297288d1faf145ff
         'CodeDelivery\\Repositories\\UserRepositoryEloquent' => __DIR__ . '/../..' . '/app/Repositories/UserRepositoryEloquent.php',
         'CodeDelivery\\Services\\ClientService' => __DIR__ . '/../..' . '/app/Services/ClientService.php',
         'CodeDelivery\\Services\\OrderService' => __DIR__ . '/../..' . '/app/Services/OrderService.php',
+        'CodeDelivery\\Transformers\\ClientTransformer' => __DIR__ . '/../..' . '/app/Transformers/ClientTransformer.php',
+        'CodeDelivery\\Transformers\\CupomTransformer' => __DIR__ . '/../..' . '/app/Transformers/CupomTransformer.php',
+        'CodeDelivery\\Transformers\\OrderItemTransformer' => __DIR__ . '/../..' . '/app/Transformers/OrderItemTransformer.php',
+        'CodeDelivery\\Transformers\\OrderTransformer' => __DIR__ . '/../..' . '/app/Transformers/OrderTransformer.php',
         'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
         'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',

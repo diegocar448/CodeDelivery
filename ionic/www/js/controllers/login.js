@@ -6,9 +6,9 @@ angular.module('starter.controllers', [])
 		};
 
 		$scope.login = function(){
-			OAuth.getAcessToken($scope.user)
+			OAuth.getAccessToken($scope.user)
 				.then(function(data){ //fazemos a requisição do nosso token e passamos o username e o password
-				console.log("login funcionando");
+				console.log(data);
 
 			}, function(responseError){ //entra aqui qdo não tiver sucesso
 

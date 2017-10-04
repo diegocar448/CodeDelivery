@@ -14,4 +14,5 @@ return array(
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
+    'Asm89\\Stack' => array($vendorDir . '/asm89/stack-cors/src'),
 );
