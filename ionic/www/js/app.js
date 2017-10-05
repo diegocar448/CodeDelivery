@@ -5,17 +5,19 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
-.value('meuValue', { //criar o serviço meuValue com o nome Diego Cardoso
-    name: "Diego Cardoso",
-    endereco: "Rua xxx",
-    minhaFuncao: function(){
-        console.log("minha funcao");
-    }
+.value('meuValue', {
+    name: 'Diego Cardoso',
 })
 
-.run(function($ionicPlatform, meuValue) {
+.constant("meuConstant", {
+    symbol: "++++++++++"
+})
+
+.run('$ionicPlataform', 'meuValue', 'meuConstant', function($ionicPlatform, meuValue, meuConstant) {
     console.log(meuValue);
-    meuValue.name = "Outro nome";
+    console.log(meuConstant);
+    meuValue.name = "Diego";
+    
     $ionicPlatform.ready(function() {
         if(window.cordova && window.cordova.plugins.Keyboard) {
           // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -34,7 +36,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 })
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
-.config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider){
+.config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, meuConstant){
+
+    console.log("Minha constante dentro do config do angularjs:" + meuConstant.symbol);
+    meuConstant.symbol = "***********";
 
     OAuthProvider.configure({
       baseUrl: 'http://localhost:8000',
@@ -60,9 +65,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('home', { 
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function($scope, meuValue){
+            controller: function($scope, meuValue, meuConstant){
                 console.log(meuValue);
-                meuValue.minhaFuncao();
+                console.log(meuConstant);
             }
         });
 
