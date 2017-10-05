@@ -13,7 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
     symbol: "++++++++++"
 })
 
-.run('$ionicPlataform', 'meuValue', 'meuConstant', function($ionicPlatform, meuValue, meuConstant) {
+.run(['$ionicPlatform', 'meuValue', 'meuConstant', function($ionicPlatform, meuValue, meuConstant) {
     console.log(meuValue);
     console.log(meuConstant);
     meuValue.name = "Diego";
@@ -33,12 +33,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
           StatusBar.styleDefault();
         }
     });
-})
+}])
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
 .config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, meuConstant){
 
-    console.log("Minha constante dentro do config do angularjs:" + meuConstant.symbol);
+    console.log("Minha constante dentro do config do angularjs:" +meuConstant.symbol);
     meuConstant.symbol = "***********";
 
     OAuthProvider.configure({
