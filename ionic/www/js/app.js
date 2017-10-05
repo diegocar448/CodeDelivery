@@ -46,7 +46,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
             url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'LoginCtrl'
-    });
+        })
+        .state('home', { 
+            url: '/home',
+            templateUrl: 'templates/home.html',
+            controller: function($scope){
+
+            }
+        });
 
 
     //$urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente

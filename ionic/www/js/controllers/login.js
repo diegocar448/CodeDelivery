@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 	.controller('LoginCtrl', [
-		'$scope', 'OAuth', '$cookies', '$ionicPopup', function($scope, OAuth, $cookies, $ionicPopup){
+		'$scope', 'OAuth', '$ionicPopup', '$state', function($scope, OAuth, $ionicPopup, $state){
+
 		$scope.user = {
 			username: '',
 			password: ''
@@ -9,8 +10,7 @@ angular.module('starter.controllers', [])
 		$scope.login = function(){
 			OAuth.getAccessToken($scope.user)
 				.then(function(data){ //fazemos a requisição do nosso token e passamos o username e o password
-					console.log(data);
-					console.log($cookies.getObject('token')); //pegar o cookie chamado token
+					$state.go('home');//redirecionar para home
 
 			}, function(responseError){ //entra aqui qdo não tiver sucesso
 				$ionicPopup.alert({
