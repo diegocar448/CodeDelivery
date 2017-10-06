@@ -5,6 +5,24 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
+
+.provider('calculadorDeArea', function(){
+
+    var o = {
+        calcular: function(){
+            return this.largura * this.comprimento;
+        }
+    };
+
+    return{              
+        $get: function(){ // e para gente conseguir gerar e retornar o nosso serviço
+            o.largura = this.largura;
+            o.comprimento = this.comprimento;
+            return o;
+        }
+    }
+})
+
 .factory('meuFactory', ['OAuth', '$http', function(a, ajax){
     //a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
     //ajax.get()
@@ -36,11 +54,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 })
 
 .run(function($ionicPlatform, meuConstant, meuService, meuFactory) {
-    meuService.largura= 100;
+    /*meuService.largura= 100;
     meuFactory.largura= 200;
     meuService.minhaFuncao();
     console.log(meuConstant);
-    meuConstant.name = "Outro nome";
+    meuConstant.name = "Outro nome";*/
     
     $ionicPlatform.ready(function() {
         if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -60,10 +78,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 })
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
-.config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, meuConstant){
+.config(function($stateProvider, $urlRouterProvider, OAuthProvider, 
+                OAuthTokenProvider, meuConstant, calculadorDeAreaProvider){
+    
+    calculadorDeAreaProvider.largura = 50;
+    calculadorDeAreaProvider.comprimento = 50;
 
-    console.log("Minha constante dentro do config do angularjs:" +meuConstant.symbol);
-    meuConstant.symbol = "***********";
 
     OAuthProvider.configure({
       baseUrl: 'http://localhost:8000',
@@ -89,12 +109,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('home', { 
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function($scope, meuConstant, meuService, meuFactory){                
-                console.log(meuConstant);
+            controller: function($scope, meuConstant, meuService, meuFactory, calculadorDeArea){   
+                console.log(calculadorDeArea.calcular());        
+                /*console.log(meuConstant);
                 meuConstant.minhaFuncao();
                 meuFactory.minhaFuncao();
                 console.log(meuService.largura);
-                console.log(meuFactory.largura);
+                console.log(meuFactory.largura);*/
             }
         });
 
