@@ -5,61 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
-
-.provider('calculadorDeArea', function(){
-
-    var o = {
-        calcular: function(){
-            return this.largura * this.comprimento;
-        }
-    };
-
-    return{              
-        $get: function(){ // e para gente conseguir gerar e retornar o nosso serviço
-            o.largura = this.largura;
-            o.comprimento = this.comprimento;
-            return o;
-        }
-    }
-})
-
-.factory('meuFactory', ['OAuth', '$http', function(a, ajax){
-    //a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
-    //ajax.get()
-    return {
-        largura:40,
-        comprimento:40,
-        minhaFuncao: function(){
-            console.log(this.largura * this.comprimento);
-    }
-}  
-}])
-
-.service('meuService', ['OAuth', '$http', function(a, ajax){
-    //a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
-    //ajax.get()
-    this.largura =40;
-    this.comprimento =40;
-    this.minhaFuncao = function(){
-        console.log(this.largura * this.comprimento);
-    };    
-}])
-
-.constant("meuConstant", {
-    name: "Diego Cardoso",
-    endereco: "Rua AAA",
-    minhaFuncao: function(){
-        console.log("minha funcao");
-    }
-})
-
-.run(function($ionicPlatform, meuConstant, meuService, meuFactory) {
-    /*meuService.largura= 100;
-    meuFactory.largura= 200;
-    meuService.minhaFuncao();
-    console.log(meuConstant);
-    meuConstant.name = "Outro nome";*/
-    
+.run(function($ionicPlatform) {
+        
     $ionicPlatform.ready(function() {
         if(window.cordova && window.cordova.plugins.Keyboard) {
           // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -79,11 +26,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
 .config(function($stateProvider, $urlRouterProvider, OAuthProvider, 
-                OAuthTokenProvider, meuConstant, calculadorDeAreaProvider){
-    
-    calculadorDeAreaProvider.largura = 50;
-    calculadorDeAreaProvider.comprimento = 50;
-
+                OAuthTokenProvider ){
 
     OAuthProvider.configure({
       baseUrl: 'http://localhost:8000',
@@ -109,16 +52,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('home', { 
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function($scope, meuConstant, meuService, meuFactory, calculadorDeArea){   
-                console.log(calculadorDeArea.calcular());        
-                /*console.log(meuConstant);
-                meuConstant.minhaFuncao();
-                meuFactory.minhaFuncao();
-                console.log(meuService.largura);
-                console.log(meuFactory.largura);*/
-            }
-        });
+            controller: function($scope){
 
+            }
+        })
+        .state('client', {
+            abstract:true, //tudo vai passar por ela mas não quer dizer q estará nela
+            url: '/client',
+            template: '<ui-view>'
+        })
+        .state('client.checkout_item_detail', {
+            url: '/checkout/detail/:index',
+            templateUrl: 'templates/client/checkout_item_detail.html',
+            controller: 'ClientCheckoutDetailCtrl'
+        })
+        .state('client.view_products', {
+            url: '/view_products',
+            templateUrl: 'templates/client/view_products.html',
+            controller: 'ClientViewProductCtrl'
+        })
 
     //$urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente
 });
