@@ -5,18 +5,28 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
-.value('meuValue', {
-    name: 'Diego Cardoso',
-})
+.service('meuService', ['OAuth', '$http', function(a, ajax){
+    a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
+    ajax.get()
+    this.largura =40;
+    this.comprimento =40;
+    this.minhaFuncao = function(){
+        console.log(this.largura * this.comprimento);
+    };    
+}])
 
 .constant("meuConstant", {
-    symbol: "++++++++++"
+    name: "Diego Cardoso",
+    endereco: "Rua AAA",
+    minhaFuncao: function(){
+        console.log("minha funcao");
+    }
 })
 
-.run(['$ionicPlatform', 'meuValue', 'meuConstant', function($ionicPlatform, meuValue, meuConstant) {
-    console.log(meuValue);
+.run(function($ionicPlatform, meuConstant, meuService) {
+    meuService.minhaFuncao();
     console.log(meuConstant);
-    meuValue.name = "Diego";
+    meuConstant.name = "Outro nome";
     
     $ionicPlatform.ready(function() {
         if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -33,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
           StatusBar.styleDefault();
         }
     });
-}])
+})
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
 .config(function($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, meuConstant){
@@ -65,9 +75,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('home', { 
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function($scope, meuValue, meuConstant){
-                console.log(meuValue);
+            controller: function($scope, meuConstant, meuService){                
                 console.log(meuConstant);
+                meuConstant.minhaFuncao();
             }
         });
 
