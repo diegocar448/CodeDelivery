@@ -5,9 +5,21 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
+.factory('meuFactory', ['OAuth', '$http', function(a, ajax){
+    //a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
+    //ajax.get()
+    return {
+        largura:40,
+        comprimento:40,
+        minhaFuncao: function(){
+            console.log(this.largura * this.comprimento);
+    }
+}  
+}])
+
 .service('meuService', ['OAuth', '$http', function(a, ajax){
-    a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
-    ajax.get()
+    //a.getAccessToken({username: 'teste@teste.com', password: 'teste'});
+    //ajax.get()
     this.largura =40;
     this.comprimento =40;
     this.minhaFuncao = function(){
@@ -23,7 +35,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
     }
 })
 
-.run(function($ionicPlatform, meuConstant, meuService) {
+.run(function($ionicPlatform, meuConstant, meuService, meuFactory) {
+    meuService.largura= 100;
+    meuFactory.largura= 200;
     meuService.minhaFuncao();
     console.log(meuConstant);
     meuConstant.name = "Outro nome";
@@ -75,9 +89,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('home', { 
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function($scope, meuConstant, meuService){                
+            controller: function($scope, meuConstant, meuService, meuFactory){                
                 console.log(meuConstant);
                 meuConstant.minhaFuncao();
+                meuFactory.minhaFuncao();
+                console.log(meuService.largura);
+                console.log(meuFactory.largura);
             }
         });
 
