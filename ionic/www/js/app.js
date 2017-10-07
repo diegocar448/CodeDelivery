@@ -3,6 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+angular.module('starter.controllers', []);
+
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
 .run(function($ionicPlatform) {
@@ -59,7 +61,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
         .state('client', {
             abstract:true, //tudo vai passar por ela mas não quer dizer q estará nela
             url: '/client',
-            template: '<ui-view>'
+            template: '<ui-view/>'
+        })
+        .state('client.checkout', {
+            url: '/checkout',
+            templateUrl: 'templates/client/checkout.html',
+            controller: 'ClientCheckoutCtrl'
         })
         .state('client.checkout_item_detail', {
             url: '/checkout/detail/:index',
