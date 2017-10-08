@@ -5,7 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter.controllers', []);
 
-angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
+angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2', 'ngResource'])
+
+
+.constant('appConfig', {
+    baseUrl: 'http://localhost:8000'
+})
 
 .run(function($ionicPlatform) {
         
@@ -28,10 +33,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2'])
 
 //ele busca a provider nesse caso o $stateProvider será $state opcional + Provider obrigatorio = $stateProvide
 .config(function($stateProvider, $urlRouterProvider, OAuthProvider, 
-                OAuthTokenProvider ){
+                OAuthTokenProvider, appConfig ){
 
     OAuthProvider.configure({
-      baseUrl: 'http://localhost:8000',
+      baseUrl: appConfig.baseUrl,
       clientId: 'appid01',
       clientSecret: 'secret', // optional
       grantPath: '/oauth/access_token' //essa e o caminho para pegarmos o nosso token

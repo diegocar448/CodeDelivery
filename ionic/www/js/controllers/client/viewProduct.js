@@ -1,23 +1,17 @@
 angular.module('starter.controllers')
 	.controller('ClientViewProductCtrl', [
-		'$scope', 'OAuth', '$ionicPopup', '$state', function($scope, OAuth, $ionicPopup, $state){
+		'$scope', '$state', 'appConfig', '$resource', function($scope, $state, appConfig, $resource){
 
-		$scope.user = {
-			username: '',
-			password: ''
-		};
+		var product = $resource(appConfig.baseUrl + '/api/client/products', {}, {
 
-		$scope.login = function(){
-			OAuth.getAccessToken($scope.user)
-				.then(function(data){ //fazemos a requisição do nosso token e passamos o username e o password
-					$state.go('home');//redirecionar para home
+			query:{
+				isArray: false
+			}
+		});
 
-			}, function(responseError){ //entra aqui qdo não tiver sucesso
-				$ionicPopup.alert({
-					title: 'Advertência',
-					template: 'Login e/ou senha inválidos'
-				})
-				console.debug(responseError);
-			});
-		}
+		product.query({}, function(data){
+			console.log("Mostrando produtos");
+			console.log(data);
+		});
+
 	}]);
