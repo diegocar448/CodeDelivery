@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter.controllers', []);
 
-angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2', 'ngResource'])
+angular.module('starter', [
+    'ionic', 'starter.controllers', 'angular-oauth2', 'ngResource'
+])
 
 
 .constant('appConfig', {
@@ -66,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-oauth2', 'ng
         .state('client', {
             abstract:true, //tudo vai passar por ela mas não quer dizer q estará nela
             url: '/client',
-            template: '<ui-view/>'
+            template: '<ion-nav-view/>'
         })
         .state('client.checkout', {
             url: '/checkout',

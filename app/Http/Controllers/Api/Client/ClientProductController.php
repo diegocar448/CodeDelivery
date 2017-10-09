@@ -11,7 +11,7 @@ class ClientProductController extends Controller
     private $repository;
     
     //pq vamos precisar pegar informações do produto
-	public function __construct(ProductRepository $repository)	
+	public function __construct(ProductRepository $repository)
     {
         $this->repository = $repository;        
 	}
