@@ -5,8 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter.controllers', []);
 
+angular.module('starter.services', []);
+
 angular.module('starter', [
-    'ionic', 'starter.controllers', 'angular-oauth2', 'ngResource'
+    'ionic', 'starter.controllers', 'starter.services','angular-oauth2', 'ngResource'
 ])
 
 
