@@ -8,8 +8,8 @@ angular.module('starter.controllers')
 		};
 
 		$scope.login = function(){
-			OAuth.getAccessToken($scope.user)
-				.then(function(data){ //fazemos a requisição do nosso token e passamos o username e o password
+			OAuth.getAccessToken($scope.user)			
+				.then(function(data){ //fazemos a requisição do nosso token e passamos o username e o password					
 					$state.go('home');//redirecionar para home
 
 			}, function(responseError){ //entra aqui qdo não tiver sucesso
