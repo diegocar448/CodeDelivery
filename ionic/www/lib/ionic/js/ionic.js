@@ -1155,7 +1155,7 @@ window.ionic.version = '1.3.3';
      * also used for cloning when dest is an empty object
      * @param   {Object}    dest
      * @param   {Object}    src
-     * @param	{Boolean}	merge		do a merge
+     * @param {Boolean} merge   do a merge
      * @returns {Object}    dest
      */
     extend: function extend(dest, src, merge) {
@@ -13141,17 +13141,17 @@ ionic.views.Slider = ionic.views.View.inherit({
      ===========================*/
     var swiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
     for (var i = 0; i < swiperDomPlugins.length; i++) {
-    	if (window[swiperDomPlugins[i]]) {
-    		addLibraryPlugin(window[swiperDomPlugins[i]]);
-    	}
+      if (window[swiperDomPlugins[i]]) {
+        addLibraryPlugin(window[swiperDomPlugins[i]]);
+      }
     }
     // Required DOM Plugins
     var domLib;
     if (typeof Dom7 === 'undefined') {
-    	domLib = window.Dom7 || window.Zepto || window.jQuery;
+      domLib = window.Dom7 || window.Zepto || window.jQuery;
     }
     else {
-    	domLib = Dom7;
+      domLib = Dom7;
     }
 
     /*===========================
