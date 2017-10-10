@@ -11,6 +11,6 @@
     "ionic": "ionic-bower#^1.3.3"
   },
   "resolutions": {
-    "angular": "1.6.6"
+    "angular": "^1.6.6"
   }
 }
