@@ -3,7 +3,11 @@ angular.module('starter.controllers')
 		'$scope', '$state', 'Product', '$ionicLoading', 'cart', '$localStorage', 
 		function($scope, $state, Product, $ionicLoading, cart, $localStorage){
 
-			console.log($localStorage.set('cart', 'meu dado'));
+			console.log($localStorage.setObject('cart', {
+				name: "Ionic",
+				version: "1.1.0"
+			}));
+			delete window.localStorage['cart'];
 
 			$scope.products = [];		
 			$ionicLoading.show({

@@ -3,5 +3,5 @@ angular.module('starter.controllers')
 		'$scope', '$state', 'cart', '$localStorage', function($scope, $state, cart, $localStorage){
 
 		$scope.items = cart.items;
-		console.log($localStorage.get('cart')); //pegar o $localStorage
+		console.log($localStorage.getObject('cart') == null); //pegar o $localStorage
 	}]);
