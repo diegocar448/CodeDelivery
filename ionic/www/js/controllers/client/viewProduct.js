@@ -2,6 +2,11 @@ angular.module('starter.controllers')
 	.controller('ClientViewProductCtrl', [
 		'$scope', '$state', 'Product', '$ionicLoading', 'cart', function($scope, $state, Product, $ionicLoading, cart){
 
+		window.localStorage['cart'] = JSON.stringify({
+			name: "Ionic",
+			version: "1.1.0"
+		});
+
 		$scope.products = [];		
 		$ionicLoading.show({
 			template: 'Carregando....'

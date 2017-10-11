@@ -3,5 +3,6 @@ angular.module('starter.controllers')
 		'$scope', '$state', 'cart', function($scope, $state, cart){
 
 		$scope.items = cart.items;
-		
+		console.log(JSON.parse(window.localStorage['cart']));
+
 	}]);
