@@ -1,5 +1,9 @@
 <ion-view>
-	<ion-content>
-		Checkout
+	<ion-content class="padding">
+		<ion-list>
+			<ion-item ng-repeat="o in items">
+				{{o.name}}				
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>

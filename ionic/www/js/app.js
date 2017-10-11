@@ -89,6 +89,10 @@ angular.module('starter', [
         })
 
     //$urlRouterProvider.otherwise('/'); //rota padrão caso tente acessar rota inexistente
+})
+
+.service('cart', function(){
+    this.items = []; //pegamos um objeto e retornamos um array
 });
 
 
