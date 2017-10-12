@@ -1,13 +1,7 @@
 angular.module('starter.controllers')
 	.controller('ClientViewProductCtrl', [
-		'$scope', '$state', 'Product', '$ionicLoading', 'cart', '$localStorage', 
-		function($scope, $state, Product, $ionicLoading, cart, $localStorage){
-
-			console.log($localStorage.setObject('cart', {
-				name: "Ionic",
-				version: "1.1.0"
-			}));
-			delete window.localStorage['cart'];
+		'$scope', '$state', 'Product', '$ionicLoading', '$cart', 
+		function($scope, $state, Product, $ionicLoading, $cart){	
 
 			$scope.products = [];		
 			$ionicLoading.show({
@@ -21,11 +15,12 @@ angular.module('starter.controllers')
 				$ionicLoading.hide(); //apresentar qdo fracassar carregamento
 			});
 
-
+			//adiciona o cart a nosso carrinho
 			$scope.addItem = function(item){
-				cart.items.push(item); //nos vamos colocar um objeto no final desse array adicionar um item
-				$state.go('client.checkout'); //redirecionar para o checkout
-			};
+				item.qtd = 1;
+				$cart.addItem(item);
+				$state.go('client.checkout');
+			}
 	}]);
 
 
