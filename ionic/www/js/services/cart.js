@@ -55,7 +55,7 @@ angular.module('starter.services')
 			cart.total = getTotal(cart.items);
 			//adicionar o cart no localStorage
 			$localStorage.setObject(key, cart);
-		}
+		};
 
 
 		this.removeItem = function(i)
@@ -65,12 +65,12 @@ angular.module('starter.services')
 			cart.items.splice(i,1); //i onde começa a remove e quantos itens eu quero remover 
 			cart.total = getTotal(cart.items);
 			$localStorage.setObject(key, cart); //ele sobrescreve o cart
-		}		
+		};		
 
 		function calculateSubTotal(item)
 		{
 			return item.price * item.qtd;
-		}
+		};
 
 		//varrer todas as posições de item e somar o total de cada item
 		function getTotal(items) 
@@ -80,7 +80,17 @@ angular.module('starter.services')
 				sum += item.subtotal;
 			});
 			return sum;
-		}
+		};
+
+		this.updateQtd = function(i, qtd) //o indice q quer alterar e a qtd q queremos alterar
+		{
+			var cart = this.get(),
+			itemAux = cart.item[i]; //item na posição "i"
+			itemAux.qtd = qtd; //alterar qtd
+			itemAux.subtotal = calculateSubTotal(itemAux); //cal subtotal
+			cart.total = getTotal(cart.items); // calc o total do carrinho
+			$localStorage.setobject(key, cart); //fazer a atualização
+		};
 
 
 		function initCart()
