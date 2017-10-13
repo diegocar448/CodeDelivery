@@ -2,9 +2,12 @@
 	<ion-nav-title>Pedido</ion-nav-title>
 	<div class="bar bar-subheader">
 		<h2 class="title">Total: R$ {{ total }}</h2>
+		<button class="button button-ion ion-minus-circled" ng-click="showDelete = !showDelete">
+
+		</button>
 	</div>
 	<ion-content class="padding has-subheader">
-		<ion-list>
+		<ion-list show-delete="showDelete">
 			<ion-item ng-repeat="o in items">
 				<h2> {{o.name}}</h2>
 				<div class="row">
@@ -16,6 +19,7 @@
 						<i class="ion ion-social-usd"> {{o.qtd * o.price}}</i>
 					</div>					
 				</div>
+				<ion-delete-button class="ion ion-minus-circled" ng-click="removeItem($index)"></ion-delete-button>
 			</ion-item>
 		</ion-list>
 	</ion-content>
