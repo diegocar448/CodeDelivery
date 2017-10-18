@@ -19,12 +19,12 @@
 					<div class="col text-right">
 						<i class="ion ion-social-usd"> {{o.qtd * o.price}}</i>
 					</div>					
-				</div>
-				<button class="button button-assertive button-full" ng-click="save()">
-					Salvar pedido
-				</button>
+				</div>				
 				<ion-delete-button class="ion ion-minus-circled" ng-click="removeItem($index)"></ion-delete-button>
 			</ion-item>
 		</ion-list>
+		<button class="button button-assertive button-full" ng-click="save()">
+			Salvar pedido
+		</button>
 	</ion-content>
 </ion-view>
