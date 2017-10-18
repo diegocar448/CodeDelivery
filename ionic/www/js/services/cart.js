@@ -85,11 +85,11 @@ angular.module('starter.services')
 		this.updateQtd = function(i, qtd) //o indice q quer alterar e a qtd q queremos alterar
 		{
 			var cart = this.get(),
-			itemAux = cart.item[i]; //item na posição "i"
-			itemAux.qtd = qtd; //alterar qtd
+			itemAux = cart.items[i]; //item na posição "i"
+			itemAux.qtd = parseInt(qtd); //alterar qtd
 			itemAux.subtotal = calculateSubTotal(itemAux); //cal subtotal
 			cart.total = getTotal(cart.items); // calc o total do carrinho
-			$localStorage.setobject(key, cart); //fazer a atualização
+			$localStorage.setObject(key, cart); //fazer a atualização
 		};
 
 

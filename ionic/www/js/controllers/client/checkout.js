@@ -11,4 +11,16 @@ angular.module('starter.controllers')
 				$scope.items.splice(i, 1);//para excluir na posição clicada
 				$scope.total = $cart.get().total; //faz a contagem e lista na tela
 			};
+
+
+			$scope.openListProducts = function()
+			{
+				$state.go('client.view_products');
+			}
+
+
+			$scope.openProductDetail = function(i)
+			{
+				$state.go('client.checkout_item_detail', {index: i});
+			};
 	}]);

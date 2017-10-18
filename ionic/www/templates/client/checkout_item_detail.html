@@ -6,14 +6,15 @@
 	<ion-content class="padding has-subheader">
 		<div class="list cart">
 			<div class="item item-avatar">
-				<h2>{{product.name}}</h2>
-				
+				<h2>{{product.name}}</h2>				
 				Qtd: {{product.qtd}} <br/>				
 				<i class="ion ion-cash"> {{o.price}}</i>				
 			</div>
 
 			<label class="item item-input">
-				<input type="text" placeholder="Quantidade" ng-model="product.qtd"/>
+				<span class="input-label">Quantidade</span>
+
+				<input type="text" placeholder="Forneça a quantidade" ng-model="product.qtd"/>
 			</label>
 
 			<button type="button" class="button button-assertive button-full" ng-click="updateQtd()">
@@ -24,7 +25,7 @@
 				<h2>Descrição</h2>
 				<p>{{product.description}}</p>
 			</div>
-			
+
 		</div>
 	</ion-content>
 </ion-view>
