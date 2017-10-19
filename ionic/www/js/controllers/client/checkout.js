@@ -38,10 +38,10 @@ angular.module('starter.controllers')
 					template: 'Carregando....'
 				});
 				//agora vamos salvar
-				Order.save({id: null}, {items: items}, function(data){ //função para o sucesso
+				Order.save({id: null}, {items: items}, function (data) { //função para o sucesso
 					$ionicLoading.hide();
 					$state.go('client.checkout_successful');
-				}, function(responseError){ //função para o fracasso
+				}, function (responseError) { //função para o fracasso
 					$ionicLoading.hide();
 					$ionicPopup.alert({
 						title: 'Advertência',

@@ -34,6 +34,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.checkrole:admin', 'as'=>'ad
 	Route::get('cupoms', ['as'=> 'cupoms.index', 'uses'=> 'CupomsController@index']);
 	Route::get('cupoms/create', ['as'=> 'cupoms.create', 'uses'=>'CupomsController@create']);		
 	Route::post('cupoms/store', ['as'=> 'cupoms.store', 'uses'=> 'CupomsController@store']);
+	
 });
 
 
@@ -48,33 +49,36 @@ Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client' ,'as'=
 
 
 Route::group(['middleware' => 'cors'], function(){
-
 	Route::post('oauth/access_token', function() {
     	return Response::json(Authorizer::issueAccessToken());
 	});
 
 	Route::group(['prefix'=>'api', 'middleware'=>'oauth', 'as'=>'api.'], function() {
+		Route::get('authenticated',['as'=> 'authenticated','uses' => 'UsersController@authenticated']);
 
-		Route::group(['prefix'=>'client', 'middleware' => 'oauth.checkrole:client', 'as'=>'client.'], function() {
+		Route::group(['prefix'=>'client', 'middleware' => 'oauth.checkrole:client', 'as'=>'client.'], function(){
 			Route::resource('order', 
 				'Api\Client\ClientCheckoutController', ['except' => ['create', 'edit', 'destroy']]);
 				 //except metodos que não quero q seja criados	
-
-
 			Route::get('products', 'Api\Client\ClientProductController@index');	
 		});
-
 
 		Route::group(['prefix'=>'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as'=>'deliveryman.'], function() {
 			Route::resource('order', 
 				'Api\Deliveryman\DeliverymanCheckoutController', ['except' => ['create', 'edit', 'destroy', 'store']]);
-				 //except metodos que não quero q seja criados	
-
+				 //except metodos que não quero q seja criados
 			Route::patch('order/{id}/update-status', [
 				'as' => 'orders.update_status',
 				'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@updateStatus']);
 		});		
 	});
-
 });
+
+
+
+
+
+
+
+
 

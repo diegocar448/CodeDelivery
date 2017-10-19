@@ -19,9 +19,9 @@ angular.module('starter', [
 .run(function($ionicPlatform) {
         
     $ionicPlatform.ready(function() {
-        if(window.cordova && window.cordova.plugins.Keyboard) {
           // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
           // for form inputs)
+        if(window.cordova && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
           // Don't remove this line unless you know what you are doing. It stops the viewport
@@ -84,7 +84,7 @@ angular.module('starter', [
             controller: 'ClientCheckoutDetailCtrl'
         })
         .state('client.checkout_successful', {
-            url: 'checkout/successful',
+            url: '/checkout/successful',
             templateUrl: 'templates/client/checkout_successful.html',
             controller: 'ClientCheckoutSuccessful'
         })
@@ -100,6 +100,7 @@ angular.module('starter', [
 .service('cart', function(){
     this.items = []; //pegamos um objeto e retornamos um array
 });
+
 
 
 
