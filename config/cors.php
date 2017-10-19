@@ -24,7 +24,7 @@ return [
     'allowedOrigins' => ['*'],
     'allowedHeaders' => ['*'],    
     'allowedMethods' => ['*'],
-    'exposedHeaders' => [],
+    'exposedHeaders' => ['*'],
     'maxAge' => 0,
     'hosts' => [],
 

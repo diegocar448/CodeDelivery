@@ -40,12 +40,13 @@ angular.module('starter.controllers')
 				//agora vamos salvar
 				Order.save({id: null}, {items: items}, function(data){ //função para o sucesso
 					$ionicLoading.hide();
-				}),function(responseError){ //função para o fracasso
+					$state.go('client.checkout_successful');
+				}, function(responseError){ //função para o fracasso
 					$ionicLoading.hide();
 					$ionicPopup.alert({
 						title: 'Advertência',
 						template: 'Pedido não realizado - Tente novamente'
 					})
-				};
+				});
 			};
 	}]);
