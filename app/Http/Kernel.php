@@ -18,7 +18,9 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \CodeDelivery\Http\Middleware\VerifyCsrfToken::class,
-        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class
+        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
+        \Barryvdh\Cors\HandleCors::class,
+        
     ];
 
     /**
@@ -35,12 +37,16 @@ class Kernel extends HttpKernel
         'oauth.checkrole' => \CodeDelivery\Http\Middleware\OAuthCheckRole::class,
 
 
+        
+
 
         'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
         'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
         'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
         'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
-        'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class
+        'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class,
+
+        'cors' => \Barryvdh\Cors\HandleCors::class
 
     ];
 

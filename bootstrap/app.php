@@ -26,6 +26,7 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
+
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     CodeDelivery\Http\Kernel::class
