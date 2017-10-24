@@ -3,11 +3,12 @@
 namespace CodeDelivery\Http\Controllers\Api\Deliveryman;
 
 use CodeDelivery\Http\Controllers\Controller;
+//use Illuminate\Support\Facades\Auth;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Repositories\OrderRepository;
+use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class DeliverymanCheckoutController extends Controller
@@ -52,7 +53,8 @@ class DeliverymanCheckoutController extends Controller
         $idDeliveryman = Authorizer::getResourceOwnerId(); //pegamos o id  do usuario
         return $this->repository
                     ->skipPresenter(false)
-                    ->getResourceOwnerId($id, $idDeliveryman);
+                    ->getByIdAndDeliveryman($id, $idDeliveryman);
+                    //->getResourceOwnerId($id, $idDeliveryman);
     }
 
     public function updateStatus(Request $request, $id)

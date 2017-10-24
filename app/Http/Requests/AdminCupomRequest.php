@@ -25,7 +25,7 @@ class AdminCupomRequest extends Request
     {
         return [
             //regras de validação
-            'code' => 'required',
+            'code' => 'required|min:3',
             'value' => 'required'
         ];
     }

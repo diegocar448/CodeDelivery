@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace CodeDelivery\Http\Controllers\Api\Client;
 
 use CodeDelivery\Http\Controllers\Controller;
@@ -49,7 +51,7 @@ class ClientCheckoutController extends Controller
     }    
 
 
-    public function store(Request $request)
+    public function store(Requests\CheckoutRequest $request)
     {        
         $data = $request->all();
         $id = Authorizer::getResourceOwnerId(); //pegamos o id
@@ -70,6 +72,7 @@ class ClientCheckoutController extends Controller
 
         return $this->repository
                     ->skipPresenter(false)
-                    ->with($this->with)->find($id);
+                    ->with($this->with)
+                    ->find($id);
     }
 }

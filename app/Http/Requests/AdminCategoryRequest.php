@@ -25,7 +25,7 @@ class AdminCategoryRequest extends Request
     {
         return [
             //regras de validação
-            'name' => 'required'
+            'name' => 'required|min:3'
         ];
     }
 }

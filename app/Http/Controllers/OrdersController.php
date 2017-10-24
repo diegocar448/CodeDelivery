@@ -29,7 +29,7 @@ class OrdersController extends Controller
 	public function edit($id, UserRepository $userRepository)
 	{
 		//listar o status
-		$list_status = [0=>'Pendente', 1=>'A caminho', 2=>'Entregue', 3=>'Cancelado'];
+		$list_status = [0=>'Pendente', 1=>'A caminho', 2=>'entregue', 3=>'Cancelado'];
 
 		//pegar o id
 		$order = $this->repository->find($id);

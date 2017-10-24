@@ -1,5 +1,7 @@
 <?php
 namespace CodeDelivery\Repositories;
+
+
 use Illuminate\Database\Eloquent\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -11,6 +13,7 @@ use CodeDelivery\Models\Order;
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {
     protected $skipPresenter = true;
+
     public function getByIdAndDeliveryman($id, $idDeliveryman)
     {
         $result = $this->with(['client', 'items', 'cupom'])->findWhere([
@@ -21,8 +24,8 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
         if ($result instanceof Collection) {
             $result = $result->first();
         //se não for uma instancia do objeto será uma array
-        }else{
-            if (isset($result['data']) && count($result['data']) == 1) {
+        } else{
+             if (isset($result['data']) && count($result['data']) == 1) {
                 $result = [
                     'data' => $result['data'][0]
                 ];
@@ -43,10 +46,14 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+    
+    /*
     public function presenter()
     {
-        return Prettus\Repository\Presenter\ModelFractalPresenter::class;
-    }
+        return \Prettus\Repository\Presenter\ModelFractalPresenter::class;
+    }*/
+    
+    
     public function presenter()
     {
         return \CodeDelivery\Presenters\OrderPresenter::class;

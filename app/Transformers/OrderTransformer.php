@@ -28,7 +28,6 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'total'      => (float) $model->total,
-            
             /* place your other model properties here */
 
             'created_at' => $model->created_at,

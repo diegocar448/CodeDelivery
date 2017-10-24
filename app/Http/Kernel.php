@@ -12,14 +12,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \Barryvdh\Cors\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \CodeDelivery\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \CodeDelivery\Http\Middleware\VerifyCsrfToken::class,
-        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
-        \Barryvdh\Cors\HandleCors::class,
+        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class
         
     ];
 
@@ -29,24 +29,22 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-    
+        
+        'cors' => \Barryvdh\Cors\HandleCors::class,
         'auth' => \CodeDelivery\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \CodeDelivery\Http\Middleware\RedirectIfAuthenticated::class,
         'auth.checkrole' => \CodeDelivery\Http\Middleware\CheckRole::class,
-        'oauth.checkrole' => \CodeDelivery\Http\Middleware\OAuthCheckRole::class,
-
+        'oauth.checkrole' => \CodeDelivery\Http\Middleware\OAuthCheckRole::class,      
 
         
-
 
         'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
         'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
         'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
         'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
-        'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class,
+        'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class
 
-        'cors' => \Barryvdh\Cors\HandleCors::class
 
     ];
 

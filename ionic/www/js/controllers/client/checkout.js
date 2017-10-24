@@ -17,7 +17,7 @@ angular.module('starter.controllers')
 			$scope.openListProducts = function()
 			{
 				$state.go('client.view_products');
-			}
+			};
 
 
 			$scope.openProductDetail = function(i)
@@ -46,7 +46,12 @@ angular.module('starter.controllers')
 					$ionicPopup.alert({
 						title: 'Advertência',
 						template: 'Pedido não realizado - Tente novamente'
-					})
+					});
 				});
 			};
 	}]);
+
+
+
+
+

@@ -9,5 +9,5 @@ angular.module('starter.controllers')
 			{
 				$cart.updateQtd($stateParams.index, $scope.product.qtd); //indice+quantidade
 				$state.go('client.checkout'); //redirecionar para client checkout
-			}
+			};
 	}]);

@@ -137,11 +137,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
-        Barryvdh\Cors\ServiceProvider::class,
 
 
         /*
@@ -156,6 +156,7 @@ return [
 
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+
 
     ],
 
