@@ -15,7 +15,7 @@ angular.module('starter.services')
 		this.clear = function()
 		{
 			initCart();
-		};
+		}
 
 		//trazer os objetos do nosso carrinho
 		this.get = function()
@@ -26,9 +26,10 @@ angular.module('starter.services')
 		//pegar um item de itens então é 1 item getItem de get
 		this.getItem = function(i)
 		{
-			return this.get().items[i];
+			return this.get().items[i]; //pegar 1 item da coleção de itens
 		};
 
+		//vai verificar sem tem um tipo de item no carrinho caso tenha soma
 		this.addItem = function(item)
 		{
 			//vai receber o nosso carrinho, get para chamar o localStorage getObject na variavel key
@@ -41,7 +42,7 @@ angular.module('starter.services')
 				{
 					//soma o itens q ja foram inseridos com os items que estão sendo inseridos
 					itemAux.qtd = item.qtd + itemAux.qtd; 
-					itemAux.subtotal = calculateSubTotal(itemAux);
+					itemAux.subtotal = calculateSubTotal(itemAux); //se o subtotal não existir então será criado
 					exists = true;
 					break;
 				}
@@ -67,10 +68,20 @@ angular.module('starter.services')
 			$localStorage.setObject(key, cart); //ele sobrescreve o cart
 		};		
 
+		this.updateQtd = function(i, qtd) //o indice q quer alterar e a qtd q queremos alterar
+		{
+			var cart = this.get(),
+				itemAux = cart.items[i]; //item na posição "i"
+			itemAux.qtd = parseInt(qtd); //alterar qtd
+			itemAux.subtotal = calculateSubTotal(itemAux); //cal subtotal
+			cart.total = getTotal(cart.items); // calc o total do carrinho
+			$localStorage.setObject(key, cart); //fazer a atualização
+		}
+
 		function calculateSubTotal(item)
 		{
 			return item.price * item.qtd;
-		};
+		}
 
 		//varrer todas as posições de item e somar o total de cada item
 		function getTotal(items) 
@@ -80,17 +91,9 @@ angular.module('starter.services')
 				sum += item.subtotal;
 			});
 			return sum;
-		};
+		}
 
-		this.updateQtd = function(i, qtd) //o indice q quer alterar e a qtd q queremos alterar
-		{
-			var cart = this.get(),
-			itemAux = cart.items[i]; //item na posição "i"
-			itemAux.qtd = parseInt(qtd); //alterar qtd
-			itemAux.subtotal = calculateSubTotal(itemAux); //cal subtotal
-			cart.total = getTotal(cart.items); // calc o total do carrinho
-			$localStorage.setObject(key, cart); //fazer a atualização
-		};
+		
 
 
 		function initCart()

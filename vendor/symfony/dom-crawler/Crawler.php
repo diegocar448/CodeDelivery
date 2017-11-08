@@ -41,8 +41,6 @@ class Crawler extends \SplObjectStorage
     private $baseHref;
 
     /**
-     * Constructor.
-     *
      * @param mixed  $node       A Node to use as the base for the crawling
      * @param string $currentUri The current URI
      * @param string $baseHref   The base href value
@@ -71,7 +69,7 @@ class Crawler extends \SplObjectStorage
      *
      * @param \DOMNodeList|\DOMNode|array|string|null $node A node
      *
-     * @throws \InvalidArgumentException When node is not the expected type.
+     * @throws \InvalidArgumentException when node is not the expected type
      */
     public function add($node)
     {
@@ -686,7 +684,7 @@ class Crawler extends \SplObjectStorage
     public function selectButton($value)
     {
         $translate = 'translate(@type, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")';
-        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, $translate, static::xpathLiteral(' '.$value.' ')).
+        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%1$s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, static::xpathLiteral(' '.$value.' ')).
                          sprintf('or (contains(%s, "image") and contains(concat(\' \', normalize-space(string(@alt)), \' \'), %s)) or @id=%s or @name=%s] ', $translate, static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value)).
                          sprintf('| descendant-or-self::button[contains(concat(\' \', normalize-space(string(.)), \' \'), %s) or @id=%s or @name=%s]', static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value));
 
@@ -969,7 +967,7 @@ class Crawler extends \SplObjectStorage
         $nodes = array();
 
         do {
-            if ($node !== $this->getNode(0) && $node->nodeType === 1) {
+            if ($node !== $this->getNode(0) && 1 === $node->nodeType) {
                 $nodes[] = $node;
             }
         } while ($node = $node->$siblingDir);

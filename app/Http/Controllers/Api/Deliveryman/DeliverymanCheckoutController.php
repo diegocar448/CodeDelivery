@@ -3,8 +3,8 @@
 namespace CodeDelivery\Http\Controllers\Api\Deliveryman;
 
 use CodeDelivery\Http\Controllers\Controller;
-//use Illuminate\Support\Facades\Auth;
 use CodeDelivery\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;

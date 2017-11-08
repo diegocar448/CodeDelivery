@@ -58,18 +58,18 @@ class ClientCheckoutController extends Controller
         $clientId = $this->userRepository->find($id)->client->id; 
         $data['client_id'] = $clientId;
         $o = $this->service->create($data);
-        
+       
         return $this->repository
                     ->skipPresenter(false)
                     ->with($this->with)
                     ->find($o->id);
     }
 
+
     //para gente conseguir pegar um registro apenas
     public function show($id)
     {
-        //skipPresenter deixa o presenter de lado e recebe os dados do Eloquent            
-
+        //skipPresenter deixa o presenter de lado e recebe os dados do Eloquent
         return $this->repository
                     ->skipPresenter(false)
                     ->with($this->with)

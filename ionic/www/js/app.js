@@ -8,7 +8,11 @@ angular.module('starter.controllers', []);
 angular.module('starter.services', []);
 
 angular.module('starter', [
-    'ionic', 'starter.controllers', 'starter.services','angular-oauth2', 'ngResource'
+    'ionic', 
+    'starter.controllers', 
+    'starter.services',
+    'angular-oauth2', 
+    'ngResource'
 ])
 
 

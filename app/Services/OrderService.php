@@ -78,7 +78,7 @@ class OrderService
 		}
 		catch(\Exception $e)
 		{
-			\DB::rollBack();  //rollback volta tudo caso não tenha feito todo o processo
+			\DB::rollback();  //rollback volta tudo caso não tenha feito todo o processo
 			throw $e;
 		}
 	}

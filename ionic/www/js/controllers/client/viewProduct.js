@@ -3,9 +3,9 @@ angular.module('starter.controllers')
 		'$scope', '$state', 'Product', '$ionicLoading', '$cart', 
 		function($scope, $state, Product, $ionicLoading, $cart){	
 
-			$scope.products = [];		
+			$scope.products = []; //vai iniciar vazio
 			$ionicLoading.show({
-				template: 'Carregando....'
+				template: 'Carregando....'  /*aparece qdo inicia o carregamento*/
 			});
 
 			Product.query({}, function(data){	//função de sucesso		
@@ -20,7 +20,7 @@ angular.module('starter.controllers')
 				item.qtd = 1;
 				$cart.addItem(item);
 				$state.go('client.checkout');
-			};
+			}
 	}]);
 
 

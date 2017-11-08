@@ -12,7 +12,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Barryvdh\Cors\HandleCors::class,
+        //\Barryvdh\Cors\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \CodeDelivery\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -47,5 +47,6 @@ class Kernel extends HttpKernel
 
 
     ];
+
 
 }

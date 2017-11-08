@@ -44,4 +44,25 @@ class PersonTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContains($genderDigit, array('0', '1', '2', '3', '4'));
     }
+
+    public function testLicenceCode()
+    {
+        $validLicenceCodes = array('A', 'A1', 'B', 'C', 'C1', 'C2', 'EB', 'EC', 'EC1', 'I', 'L', 'L1');
+
+        $this->assertContains($this->faker->licenceCode, $validLicenceCodes);
+    }
+
+    public function testMaleTitles()
+    {
+        $validMaleTitles = array('Mr.', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
+
+        $this->assertContains(Person::titleMale(), $validMaleTitles);
+    }
+
+    public function testFemaleTitles()
+    {
+        $validateFemaleTitles = array('Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
+
+        $this->assertContains(Person::titleFemale(), $validateFemaleTitles);
+    }
 }

@@ -58,19 +58,17 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     protected $startTime;
     protected $loadClassCache;
 
-    const VERSION = '2.7.34';
-    const VERSION_ID = 20734;
+    const VERSION = '2.7.36-DEV';
+    const VERSION_ID = 20736;
     const MAJOR_VERSION = 2;
     const MINOR_VERSION = 7;
-    const RELEASE_VERSION = 34;
-    const EXTRA_VERSION = '';
+    const RELEASE_VERSION = 36;
+    const EXTRA_VERSION = 'DEV';
 
     const END_OF_MAINTENANCE = '05/2018';
     const END_OF_LIFE = '05/2019';
 
     /**
-     * Constructor.
-     *
      * @param string $environment The environment
      * @param bool   $debug       Whether to enable debugging or not
      */
@@ -616,8 +614,6 @@ abstract class Kernel implements KernelInterface, TerminableInterface
 
     /**
      * Prepares the ContainerBuilder before it is compiled.
-     *
-     * @param ContainerBuilder $container A ContainerBuilder instance
      */
     protected function prepareContainer(ContainerBuilder $container)
     {
@@ -681,8 +677,6 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     /**
      * Returns a loader for the container.
      *
-     * @param ContainerInterface $container The service container
-     *
      * @return DelegatingLoader The loader
      */
     protected function getContainerLoader(ContainerInterface $container)
@@ -728,7 +722,7 @@ abstract class Kernel implements KernelInterface, TerminableInterface
                 do {
                     $token = $tokens[++$i];
                     $output .= isset($token[1]) && 'b"' !== $token ? $token[1] : $token;
-                } while ($token[0] !== T_END_HEREDOC);
+                } while (T_END_HEREDOC !== $token[0]);
                 $rawChunk = '';
             } elseif (T_WHITESPACE === $token[0]) {
                 if ($ignoreSpace) {

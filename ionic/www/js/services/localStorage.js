@@ -5,10 +5,10 @@ angular.module('starter.services')
 			$window.localStorage[key] = value; //qdo a gente passa a key ja cria o espaço e nosso container
 			return $window.localStorage[key]; //retornar o valor baseado na chave q acabou de criar //set é so para dado puro
 		},
-		get: function(key, defaultValue){
+		get: function(key, defaultValue){ //caso não encontre o valor q precisa então ele passa um valor default
 			return $window.localStorage[key] || defaultValue; //procure em nosso locaSto.. com chave tal senão passe a defaultValue
 		},
-		setObject: function(key, value){
+		setObject: function(key, value){ 
 			$window.localStorage[key] = JSON.stringify(value); //converter objeto em JSON
 			return this.getObject(key); //pegar o um objeto q ja esta pronto
 		},

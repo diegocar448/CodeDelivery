@@ -20,13 +20,7 @@ class CheckRole
         if (!Auth::check()) 
         {
             return redirect('/auth/login');
-        }
-
-        //somente o admin terá acesso ao painel administrativo
-        /*if (Auth::user()->role <> "admin") 
-        {
-            return redirect('auth/login');
-        }*/
+        }        
 
         
         //se a role do usuário autenticado bate com a $role que passamos
