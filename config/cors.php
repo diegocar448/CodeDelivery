@@ -25,9 +25,9 @@ return [
     
     'supportsCredentials' => false,
     'allowedOrigins' => ['*'],
-    'allowedHeaders' => ['*'],    
-    'allowedMethods' => ['GET', 'POST', 'PUT', 'DELETE'],
-    'exposedHeaders' => ['*'],
+    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Origin', 'X-Auth-Token' , 'Authorization', 'OAuth'],    
+    'allowedMethods' => ['*'],
+    'exposedHeaders' => [],
     'maxAge' => 0,
     'hosts' => [],
     

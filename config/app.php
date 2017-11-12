@@ -210,7 +210,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,        
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-
+        
     ],
 
 ];

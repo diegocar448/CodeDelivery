@@ -12,7 +12,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        //\Barryvdh\Cors\HandleCors::class,
+        \Barryvdh\Cors\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \CodeDelivery\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -23,6 +23,8 @@ class Kernel extends HttpKernel
         
     ];
 
+   
+
     /**
      * The application's route middleware.
      *
@@ -30,21 +32,26 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         
-        'cors' => \Barryvdh\Cors\HandleCors::class,
-        'auth' => \CodeDelivery\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \CodeDelivery\Http\Middleware\RedirectIfAuthenticated::class,
-        'auth.checkrole' => \CodeDelivery\Http\Middleware\CheckRole::class,
-        'oauth.checkrole' => \CodeDelivery\Http\Middleware\OAuthCheckRole::class,      
+         
+
+            //'cors' => \CodeDelivery\Http\Middleware\Cors::class,
+            'auth' => \CodeDelivery\Http\Middleware\Authenticate::class,
+            'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+            'guest' => \CodeDelivery\Http\Middleware\RedirectIfAuthenticated::class,
+            'auth.checkrole' => \CodeDelivery\Http\Middleware\CheckRole::class,
+            'oauth.checkrole' => \CodeDelivery\Http\Middleware\OAuthCheckRole::class,      
 
         
+        
 
-        'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
-        'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
-        'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
-        'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
-        'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class
+            'cors' => \Barryvdh\Cors\HandleCors::class,
+            'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
+            'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
+            'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
+            'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
+            'csrf' => CodeDelivery\Http\Middleware\VerifyCsrfToken::class
 
+       
 
     ];
 

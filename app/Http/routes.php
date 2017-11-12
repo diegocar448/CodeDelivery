@@ -2,9 +2,9 @@
 
 
 
-	Route::get('/', function () {
+	/*Route::get('/', function () {
     return view('welcome');
-	});
+	});*/
 
 Route::group(['prefix'=>'admin', 'middleware'=>'auth.checkrole:admin', 'as'=>'admin.'] , function() {
 
@@ -39,6 +39,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.checkrole:admin', 'as'=>'ad
 
 
 
+
 Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client' ,'as'=>'customer.'], function() {
 	Route::get('order', ['as' => 'order.index', 'uses'=>'CheckoutController@index']);
 	Route::get('order/create', ['as' => 'order.create', 'uses'=>'CheckoutController@create']);
@@ -52,8 +53,8 @@ Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client' ,'as'=
 
 
 
-Route::group(['middleware' => 'cors'], function(){	
 
+Route::group(['middleware' => 'cors'], function(){	
 
 	Route::post('oauth/access_token', function(){
 
